@@ -4,8 +4,24 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListApplicationView</servlet-name>
+        <servlet-class>view.application.ListApplicationView</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomePageView</servlet-name>
+        <servlet-class>view.application.HomePageView</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListApplicationView</servlet-name>
+        <url-pattern>/listapplicationview</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomePageView</servlet-name>
+        <url-pattern>/homepageview</url-pattern>
     </servlet-mapping>
 </web-app>
