@@ -14,7 +14,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.GoogleAccount;
 import controller.GoogleLoginController;
+import dal.EmployeeDBContext;
 import java.sql.SQLException;
+import model.Employee;
 import model.Role;
 import model.User;
 
@@ -115,6 +117,9 @@ public class ControllerLogin extends HttpServlet {
 
             if (user != null) {
                 HttpSession session = req.getSession();
+                EmployeeDBContext edb = new EmployeeDBContext();
+                Employee profile = edb.get(user.getE().getId());
+                user.setE(profile);
                 session.setAttribute("user", user);
                 System.out.println(user);
                 resp.sendRedirect("homepage");

@@ -4,6 +4,7 @@
     Author     : ibm
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,12 +39,12 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
         <style>
-       /* Cố định kích thước ảnh */
-       .carousel-inner img {
-           width: 100%;  /* Ảnh sẽ chiếm toàn bộ bề ngang */
-           height: 300px; /* Chiều cao cố định (thay đổi tùy nhu cầu) */
-           object-fit: cover; /* Cắt ảnh để không bị méo */
-       }
+            /* Cố định kích thước ảnh */
+            .carousel-inner img {
+                width: 100%;  /* Ảnh sẽ chiếm toàn bộ bề ngang */
+                height: 300px; /* Chiều cao cố định (thay đổi tùy nhu cầu) */
+                object-fit: cover; /* Cắt ảnh để không bị méo */
+            }
         </style>
 
         <style>
@@ -51,10 +52,26 @@
                 transition: transform 3s ease-in-out !important; /* Làm chậm chuyển động */
             }
         </style>
-        
-     
 
-        
+        <style>
+            /* Hiệu ứng hover ảnh */
+            .img-zoom {
+                transition: transform 0.3s ease-in-out;
+            }
+            .img-zoom:hover {
+                transform: scale(1.1);
+            }
+
+            /* Hiệu ứng hover cho nút */
+            .btn-hover:hover {
+                background: #ff6600;
+                color: white;
+                transform: scale(1.05);
+                transition: all 0.3s ease-in-out;
+            }
+        </style>
+
+
     </head>
 
     <body>
@@ -113,10 +130,10 @@
                                         <a class="nav-link" href="login">Login</a>
                                     </li>
                                     <li class="nav-item">
-                                            <a class="nav-link">Hello ${sessionScope.user.displayname}!</a>
+                                        <a class="nav-link">Hello ${sessionScope.user.displayname}!</a>
                                     </li>
-                                        
-                                    
+
+
                                 </ul>
                             </div>
 
@@ -126,7 +143,7 @@
             </header>
             <!-- end header section -->
             <!-- slider section -->
-            
+
             <section class="slider_section ">
                 <div class="container ">
                     <div class="row">
@@ -160,45 +177,35 @@
                                 </div>
 
                                 <!-- Nút điều hướng -->
-                                
+
                                 <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 </button>
                                 <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 </button>
-                                
+
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             <!-- end slider section -->
-        </div>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        
-        <!-- feature section -->
-       
+      
 
+
+        <!-- feature section -->
+   
+          Your All Staffs: <br/>
+          <c:forEach items="${sessionScope.user.e.staffs}" var="s" >
+            ${s.name} <br/>
+         </c:forEach>  
 
         <footer class="footer_section">
             <div class="container">
                 <p>
-                    &copy; <span id="displayDateYear"></span> All Rights Reserved By
-                    <a href="https://html.design/">Free Html Templates</a>
+                    &copy; <span id="displayDateYear"></span>
+                    <a href="https://html.design/"></a>
                 </p>
             </div>
         </footer>

@@ -5,13 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%-- 
-    Document   : divisionsleader
-    Created on : Mar 6, 2025, 12:50:26 PM
-    Author     : ibm
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>

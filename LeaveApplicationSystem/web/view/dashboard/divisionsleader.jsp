@@ -5,6 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.List, model.LeaveRequest" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -89,8 +93,8 @@
                                     aria-expanded="false"
                                     >
                                     <i class="fas fa-home"></i>
-                                    <p>Divisions Dashboard</p>
-                                    
+                                    <p>Staff Dashboard</p>
+
                                 </a>
 
                             </li>
@@ -359,72 +363,48 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class ="col-md-5">
                                                     <div class="card card-round">
                                                         <div class="card-body">
                                                             <div class="card-head-row card-tools-still-right">
                                                                 <div class="card-title">Your Staff</div>
-                                                                <div class="card-tools">
-                                                                    <div class="dropdown">
-                                                                        <button
-                                                                            class="btn btn-icon btn-clean me-0"
-                                                                            type="button"
-                                                                            id="dropdownMenuButton"
-                                                                            data-bs-toggle="dropdown"
-                                                                            aria-haspopup="true"
-                                                                            aria-expanded="false"
-                                                                            >
-                                                                            <i class="fas fa-ellipsis-h"></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div class="card-list py-4">
-
-
-
-
-                                                                <div class="item-list">
-                                                                    <div class="avatar">
-                                                                        <span
-                                                                            class="avatar-title rounded-circle border border-white bg-primary"
-                                                                            >H</span
-                                                                        >
+                                                                <c:forEach items="${sessionScope.user.e.staffs}" var="s">
+                                                                    <div class="item-list d-flex align-items-center justify-content-between p-2 border-bottom">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <!-- Avatar với ký tự đầu -->
+                                                                            <div class="avatar">
+                                                                                <span class="avatar-title rounded-circle border border-white bg-primary text-white">
+                                                                                    <c:out value="${s.name.substring(0,1)}" />
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="info-user ms-3">
+                                                                                <div class="username fw-bold">
+                                                                                    <c:out value="${s.name}" />
+                                                                                </div>
+                                                                                <div class="status text-muted">
+                                                                                    <c:out value="${s.dept.name}" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <!-- Nút gửi email -->
+                                                                            <button class="btn btn-sm btn-outline-primary me-1">
+                                                                                <i class="far fa-envelope"></i>
+                                                                            </button>
+                                                                            <!-- Nút chặn -->
+                                                                            <button class="btn btn-sm btn-outline-danger">
+                                                                                <i class="fas fa-ban"></i>
+                                                                            </button>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="info-user ms-3">
-                                                                        <div class="username">Mr F</div>
-                                                                        <div class="status">Sale</div>
-                                                                    </div>
-                                                                    <button class="btn btn-icon btn-link op-8 me-1">
-                                                                        <i class="far fa-envelope"></i>
-                                                                    </button>
-                                                                    <button class="btn btn-icon btn-link btn-danger op-8">
-                                                                        <i class="fas fa-ban"></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="item-list">
-                                                                    <div class="avatar">
-                                                                        <span
-                                                                            class="avatar-title rounded-circle border border-white bg-secondary"
-                                                                            >F</span
-                                                                        >
-                                                                    </div>
-                                                                    <div class="info-user ms-3">
-                                                                        <div class="username">Mr E</div>
-                                                                        <div class="status">IT</div>
-                                                                    </div>
-                                                                    <button class="btn btn-icon btn-link op-8 me-1">
-                                                                        <i class="far fa-envelope"></i>
-                                                                    </button>
-                                                                    <button class="btn btn-icon btn-link btn-danger op-8">
-                                                                        <i class="fas fa-ban"></i>
-                                                                    </button>
-                                                                </div>
+                                                                </c:forEach>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-8">
+                                                <div class="col-md-7">
                                                     <div class="card card-round">
                                                         <div class="card-header">
                                                             <div class="card-head-row card-tools-still-right">
@@ -453,32 +433,50 @@
                                                                     <thead class="thead-light">
                                                                         <tr>
                                                                             <th scope="col">Title</th>
-                                                                            <th scope="col" class="text-end">Date & Time</th>
-                                                                            <th scope="col" class="text-end">Created By</th>
+                                                                            <th scope="col" class="text-end">Created Date</th>
+                                                                            <th scope="col" class="text-end">From</th>
+                                                                            <th scope="col" class="text-end">To</th>
+                                                                            <th scope="col" class="text-end">Reason</th> <!-- Thêm cột mới -->
                                                                             <th scope="col" class="text-end">Status</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
-                                                                            <th scope="row">
-                                                                                <button
-                                                                                    class="btn btn-icon btn-round btn-success btn-sm me-2"
-                                                                                    >
-                                                                                    <i class="fa fa-check"></i>
-                                                                                </button>
-                                                                                Đơn xin nghỉ phép
-                                                                            </th>
-                                                                            <td class="text-end">Mar 19, 2020, 2.45pm</td>
-                                                                            <td class="text-end">Mr B</td>
-                                                                            <td class="text-end">
-                                                                                <button class="badge badge-success">Upload</button>
-                                                                                <button class="badge badge-success" onclick="window.location.href = '../../application/request/modify'">Modify</button>
-
-                                                                            </td>
-                                                                        </tr>
-
+                                                                        <c:forEach var="leaveRequest" items="${requests}">
+                                                                            <tr>
+                                                                                <td>
+                                                                                    ${leaveRequest.title}
+                                                                                </td>
+                                                                                <td class="text-end">
+                                                                                    <fmt:formatDate value="${leaveRequest.createddate}" pattern="MMM dd, yyyy, hh:mm a"/>
+                                                                                </td>
+                                                                                <td class="text-end">
+                                                                                    <fmt:formatDate value="${leaveRequest.from}" pattern="MMM dd, yyyy"/>
+                                                                                </td>
+                                                                                <td class="text-end">
+                                                                                    <fmt:formatDate value="${leaveRequest.to}" pattern="MMM dd, yyyy"/>
+                                                                                </td>
+                                                                                <td class="text-end">
+                                                                                    ${leaveRequest.reason} <!-- Hiển thị lý do nghỉ -->
+                                                                                </td>
+                                                                                <td class="text-end">
+                                                                                    <c:choose>
+                                                                                        <c:when test="${leaveRequest.status == 1}">
+                                                                                            <span class="badge badge-success">Approved</span>
+                                                                                        </c:when>
+                                                                                        <c:when test="${leaveRequest.status == 0}">
+                                                                                            <span class="badge badge-warning">Inprogress</span>
+                                                                                        </c:when>
+                                                                                        <c:otherwise>
+                                                                                            <span class="badge badge-danger">Rejected</span>
+                                                                                        </c:otherwise>
+                                                                                    </c:choose>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </c:forEach>
                                                                     </tbody>
                                                                 </table>
+
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -486,6 +484,7 @@
                                             </div>
                                         </div>
                                     </div>
+
 
 
 

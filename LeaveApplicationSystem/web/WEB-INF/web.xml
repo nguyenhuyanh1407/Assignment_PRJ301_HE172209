@@ -52,6 +52,10 @@
         <servlet-name>ControllerLogout</servlet-name>
         <servlet-class>controller.auth.ControllerLogout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewDashBoard</servlet-name>
+        <servlet-class>view.dashboard.ViewDashBoard</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControllerLogin</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -103,5 +107,9 @@
     <servlet-mapping>
         <servlet-name>ControllerLogout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewDashBoard</servlet-name>
+        <url-pattern>/view/dashboard</url-pattern>
     </servlet-mapping>
 </web-app>
